@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: carj
+
+  datasource:
+    url: 'jdbc:postgresql://localhost:5432/postgres'
+    username: postgres
+    password: Palanet13!
+
+  jpa:
+    hibernate:
+      ddl-auto: create
