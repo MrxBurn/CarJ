@@ -4,9 +4,10 @@ package com.carj.carj.Controllers;
 import com.carj.carj.Models.User;
 import com.carj.carj.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class UserController {
@@ -15,13 +16,18 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/createUser")
-    public User createUser(@RequestBody User user)
-    {
+    public User createUser(@RequestBody User user) {
         return userService.saveUser(user);
     }
 
-    public User getUser(@RequestBody Long id){
-        return userService.getUserById(id);
+    @GetMapping("/getUserById/{id}")
+    public User getUser(@PathVariable UUID id) {
+        return userService.getUserByUUID(id);
+    }
+
+    @GetMapping("/getAllUsers")
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
     }
 
 }
